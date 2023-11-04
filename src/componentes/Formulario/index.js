@@ -1,3 +1,4 @@
+import Botao from "../Botao";
 import CampoTexto from "../CampoTexto";
 import ListaSuspensa from "../ListaSuspensa";
 import "./Formulario.css";
@@ -14,15 +15,23 @@ const Formulario = () => {
         'Inovação e Gestão'
     ]
 
+    const aoSalvar = (evento) => {
+        evento.preventDefault()
+        console.log("Form foi submetido")
+    }
+
     return (
         <section className="formulario">
-            <form>
+            <form onSubmit={aoSalvar}>
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
-                <CampoTexto label="nome" placeholder="Digite o seu nome" />
-                <CampoTexto label="cargo" placeholder="Digite o seu cargo" />
+                <CampoTexto obrigatorio={true} label="nome" placeholder="Digite o seu nome" />
+                <CampoTexto obrigatorio={true} label="cargo" placeholder="Digite o seu cargo" />
                 <CampoTexto label="imagem" placeholder="Informe o endereço da imagem" />
-                <ListaSuspensa label='Time' itens={times}/>
-            </form>
+                <ListaSuspensa obrigatorio={true} label='Time' itens={times}/> 
+                <Botao>
+                    Criar Card
+                </Botao>
+            </form> 
         </section>
     );
 };
